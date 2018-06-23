@@ -17,14 +17,14 @@ player = Player()
 def update_player_velocity(keys):
     vector = Vector()
     if keys[pygame.K_LEFT]:
-        vector.x = -1
+        vector.x = -0.1
     if keys[pygame.K_RIGHT]:
-        vector.x = 1
+        vector.x = 0.1
 
     if keys[pygame.K_UP]:
-        vector.y = -1
+        vector.y = -0.1
     if keys[pygame.K_DOWN]:
-        vector.y = 1
+        vector.y = 0.1
 
     if vector != Vector():
         dispatcher.dispatch(Events.PLAYER_CHANGE_POS, vector=vector)
