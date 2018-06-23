@@ -45,7 +45,7 @@ while run:
         if event.type == pygame.QUIT:
             run = False
         if event.type == pygame.MOUSEBUTTONDOWN:
-            dispatcher.dispatch(Events.PLAYER_APPEND_BULLET)
+            dispatcher.dispatch(Events.PLAYER_APPEND_BULLET, enemy=enemy, cursor_pos=lambda: (cursor.x, cursor.y))
     keys = pygame.key.get_pressed()
     update_io(keys)
     dispatcher.dispatch(Events.UPDATE_GAME)
