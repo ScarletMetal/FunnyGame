@@ -5,6 +5,7 @@ from vector_generator import Vector
 import constants
 from bullet import Bullet as bullet
 
+
 class Player:
     def __init__(self, x=float(41), y=float(26)):
         self.x = float(x)
@@ -32,9 +33,10 @@ class Player:
     def draw(self, win):
         pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.height))
 
-    def shoot_bullet(self,velocity,enemy):
-        if len(self.bullets) <= constants.max_bullets:
-            self.bullets.append(bullet(x=self.x-self.width/2,y=self.y+self.height/2,velocity=velocity,enemy=enemy))
+    def shoot_bullet(self, velocity, enemy):
+        if len(self.bullets) < constants.max_bullets:
+            self.bullets.append(
+                bullet(x=self.x - self.width / 2, y=self.y + self.height / 2, velocity=velocity, enemy=enemy))
 
     def update_pos(self, vector):
         self.velocity += vector
