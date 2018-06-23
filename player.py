@@ -34,20 +34,26 @@ class Player:
 
         for bullet in self.bullets:
             bullet.update()
+            if not bullet.check_if_inbound():
+                index = self.bullets.index(bullet)
+                del self.bullets[index]
 
     def draw(self, win):
         pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.height))
 
         for bullet in self.bullets:
-            bullet.draw(bullet)
+            bullet.draw(win)
 
     def append_bullet(self, cursor_pos, enemy):
-        if len(self.bullets) < constants.max_bullets:
-            bullet_velocity = Vector(cursor_pos[0] - self.x, cursor_pos[1] - self.y)
-            self.bullets.append(
-                Bullet(x=self.x - self.width / 2, y=self.y + self.height / 2,
-                       velocity=constants.bullet_speed / bullet_velocity.get_magnitude() * bullet_velocity,
-                       enemy=enemy))
+        try:
+            if len(self.bullets) < constants.max_bullets:
+                bullet_velocity = Vector(cursor_pos()[0] - self.x, cursor_pos()[1] - self.y)
+                self.bullets.append(
+                    Bullet(x=self.x - self.width / 2, y=self.y + self.height / 2,
+                           velocity=constants.bullet_speed / bullet_velocity.get_magnitude() * bullet_velocity,
+                           enemy=enemy))
+        except Exception as e:
+            print(e)
 
     def update_pos(self, vector):
         self.velocity += vector
