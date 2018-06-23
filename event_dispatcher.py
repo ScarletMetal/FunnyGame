@@ -13,7 +13,8 @@ class EventDispatcher:
             for callback in self.events[name]:
                 try:
                     callback(**params)
-                except Exception:
+                except Exception as e:
+                    print("Error While Dispatching Callback For " + name)
                     index = self.events[name].index(callback)
                     del self.events[name][index]
 
