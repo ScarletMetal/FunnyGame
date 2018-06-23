@@ -3,7 +3,7 @@ from event_dispatcher import game_dispatcher as dispatcher
 from events import events as Events
 from vector_generator import Vector
 import constants
-from bullet import Bullet as bullet
+from bullet import Bullet
 
 
 class Player:
@@ -32,14 +32,20 @@ class Player:
             self.velocity.y *= 0.5 * direction_change.y
             self.force_inbounds()
 
+        for bullet in self.bullets:
+            bullet.update()
+
     def draw(self, win):
         pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.height))
+
+        for bullet in self.bullets:
+            bullet.draw(bullet)
 
     def append_bullet(self, cursor_pos, enemy):
         if len(self.bullets) < constants.max_bullets:
             bullet_velocity = Vector(cursor_pos[0] - self.x, cursor_pos[1] - self.y)
             self.bullets.append(
-                bullet(x=self.x - self.width / 2, y=self.y + self.height / 2,
+                Bullet(x=self.x - self.width / 2, y=self.y + self.height / 2,
                        velocity=constants.bullet_speed / bullet_velocity.get_magnitude() * bullet_velocity,
                        enemy=enemy))
 
