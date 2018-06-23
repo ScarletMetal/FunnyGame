@@ -34,15 +34,14 @@ def update_io(keys):
     update_player_velocity(keys)
 
 while run:
-    pygame.time.delay(100)
-
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
 
     keys = pygame.key.get_pressed()
     update_io(keys)
-
+    dispatcher.dispatch(Events.UPDATE_GAME)
+    win.fill((0, 0, 0))
     dispatcher.dispatch(Events.DRAW_GAME, win=win)
     pygame.display.update()
 
