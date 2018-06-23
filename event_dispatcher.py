@@ -3,14 +3,20 @@ class EventDispatcher:
         self.events = {}
 
     def subscribe(self, name, callback):
-        if self.events[name] is None:
-            self.events[name] = []
-        self.events[name].append(callback)
+        try:
+            self.events[name].append(callback)
+        except KeyError:
+            self.events[name] = [callback]
 
     def dispatch(self, name, **params):
         if self.events[name] is not None:
             for callback in self.events[name]:
-                callback(params)
+                try:
+                    callback(**params)
+                except Exception as e:
+                    print("Error While Dispatching Callback For " + name)
+                    index = self.events[name].index(callback)
+                    del self.events[name][index]
 
 
 game_dispatcher = EventDispatcher()
