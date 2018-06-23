@@ -2,6 +2,7 @@ import pygame
 from event_dispatcher import game_dispatcher as dispatcher
 from player import Player
 from events import Events
+from vector_generator import Vector
 
 pygame.init()
 run = True
@@ -11,17 +12,24 @@ pygame.display.set_caption("Super Game")
 player = Player()
 
 
-def update_io(k):
-    if k[pygame.K_LEFT]:
-        dispatcher.dispatch(Events.PLAYER_CHANGE_X, x=-1)
-    if k[pygame.K_RIGHT]:
-        dispatcher.dispatch(Events.PLAYER_CHANGE_X, x=1)
+def update_player_velocity(keys):
+    vector = Vector()
+    if keys[pygame.K_LEFT]:
+        vector.x = -1
+    if keys[pygame.K_RIGHT]:
+        vector.x = 1
 
-    if k[pygame.K_UP]:
-        dispatcher.dispatch(Events.PLAYER_CHANGE_Y, y=-1)
-    if k[pygame.K_DOWN]:
-        dispatcher.dispatch(Events.PLAYER_CHANGE_Y, y=1)
+    if keys[pygame.K_UP]:
+        vector.y = -1
+    if keys[pygame.K_DOWN]:
+        vector.y = 1
 
+    if vector != Vector():
+        dispatcher.dispatch(Events.PLAYER_CHANGE_POS, vector)
+
+
+def update_io(keys):
+    update_player_velocity(keys)
 
 while run:
     pygame.time.delay(100)
