@@ -4,6 +4,7 @@ from player import Player
 from events import events as Events
 from vector_generator import Vector
 from cursor import Cursor
+from enemy import Enemy
 import constants
 
 pygame.init()
@@ -12,6 +13,7 @@ win = pygame.display.set_mode((constants.screen_width, constants.screen_height))
 pygame.display.set_caption("Super Game")
 
 player = Player()
+enemy = Enemy(300, 300)
 cursor = Cursor()
 clock = pygame.time.Clock()
 pygame.mouse.set_visible(False)
@@ -42,6 +44,8 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            dispatcher.dispatch(Events.PLAYER_APPEND_BULLET)
     keys = pygame.key.get_pressed()
     update_io(keys)
     dispatcher.dispatch(Events.UPDATE_GAME)
