@@ -4,6 +4,7 @@ from events import events as Events
 from vector_generator import Vector
 import constants
 from bullet import Bullet as bullet
+import time
 
 
 class Player:
@@ -15,6 +16,7 @@ class Player:
         self.color = (66, 244, 161)
         self.velocity = Vector(0, 0)
         self.bullets = []
+        self.last_shot_time = time.time()
         dispatcher.subscribe(Events.PLAYER_CHANGE_POS, self.update_pos)
         dispatcher.subscribe(Events.DRAW_GAME, self.draw)
         dispatcher.subscribe(Events.UPDATE_GAME, self.update)
@@ -36,7 +38,9 @@ class Player:
         pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.height))
 
     def append_bullet(self, cursor_pos, enemy):
-        if len(self.bullets) < constants.max_bullets:
+        if len(self.bullets) < constants.max_bullets and \
+                time.time() - self.last_shot_time > constants.time_between_shots:
+            self.last_shot_time = time.time()
             bullet_velocity = Vector(cursor_pos[0] - self.x, cursor_pos[1] - self.y)
             self.bullets.append(
                 bullet(x=self.x - self.width / 2, y=self.y + self.height / 2,
