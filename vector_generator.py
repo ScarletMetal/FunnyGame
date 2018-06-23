@@ -8,3 +8,6 @@ class Vector:
 
     def __rmul__(self, other):
         return Vector(self.x * other, self.y * other)
+
+    def __add__(self, other):
+        return Vector(self.x + other.x, self.y + other.y)
