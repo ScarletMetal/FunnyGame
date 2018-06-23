@@ -13,10 +13,14 @@ class Enemy:
 
         dispatcher.subscribe(Events.DRAW_GAME, self.draw)
         dispatcher.subscribe(Events.ENEMY_UPDATE_LOCATION, self.update_location)
+        dispatcher.subscribe(Events.ENEMY_HIT, self.enemy_hit)
 
     def update_location(self, x, y):
         self.x = x
         self.y = y
+
+    def enemy_hit(self):
+        print("Ouch!!")
 
     def draw(self, win):
         pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.height))
