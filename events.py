@@ -14,5 +14,4 @@ class Events:
         self.UPDATE_GAME = "updtgm"
 
 
-
 events = Events()
