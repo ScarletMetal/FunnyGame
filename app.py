@@ -1,9 +1,8 @@
 import pygame
-from event_dispatcher import EventDispatcher
+from event_dispatcher import game_dispatcher as dispatcher
 from player import Player
 from events import Events
 
-dispatcher = EventDispatcher()
 pygame.init()
 run = True
 win = pygame.display.set_mode((400, 255))
