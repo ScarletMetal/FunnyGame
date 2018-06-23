@@ -2,5 +2,4 @@ from enum import Enum
 
 
 class Events(Enum):
-    PLAYER_UP = "player-up"
-    PLAYER_DOWN = "player-down"
+    PLAYER_CHANGE_POS = "plcs"
