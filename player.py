@@ -16,7 +16,7 @@ class Player:
         pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.height))
 
     def change_x(self, x):
-        self.x += x
+        pass
 
     def change_y(self, y):
-        self.y += y
+        pass
