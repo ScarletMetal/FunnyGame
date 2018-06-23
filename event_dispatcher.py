@@ -11,3 +11,6 @@ class EventDispatcher:
         if self.events[name] is not None:
             for callback in self.events[name]:
                 callback(params)
+
+
+game_dispatcher = EventDispatcher()
