@@ -4,6 +4,7 @@ from events import events as Events
 from vector_generator import Vector
 import constants
 from bullet import Bullet
+import time
 
 
 class Player:
@@ -15,6 +16,7 @@ class Player:
         self.color = (66, 244, 161)
         self.velocity = Vector(0, 0)
         self.bullets = []
+        self.time_since_shot = time.time()
         dispatcher.subscribe(Events.PLAYER_CHANGE_POS, self.update_pos)
         dispatcher.subscribe(Events.DRAW_GAME, self.draw)
         dispatcher.subscribe(Events.UPDATE_GAME, self.update)
@@ -45,15 +47,14 @@ class Player:
             bullet.draw(win)
 
     def append_bullet(self, cursor_pos, enemy):
-        try:
-            if len(self.bullets) < constants.max_bullets:
-                bullet_velocity = Vector(cursor_pos()[0] - self.x, cursor_pos()[1] - self.y)
-                self.bullets.append(
-                    Bullet(x=self.x - self.width / 2, y=self.y + self.height / 2,
-                           velocity=constants.bullet_speed / bullet_velocity.get_magnitude() * bullet_velocity,
-                           enemy=enemy))
-        except Exception as e:
-            print(e)
+        if len(self.bullets) < constants.max_bullets and \
+                time.time() - self.time_since_shot > constants.time_between_shots:
+            self.time_since_shot = time.time()
+            bullet_velocity = Vector(cursor_pos()[0] - self.x, cursor_pos()[1] - self.y)
+            self.bullets.append(
+                Bullet(x=self.x - self.width / 2, y=self.y + self.height / 2,
+                       velocity=constants.bullet_speed / bullet_velocity.get_magnitude() * bullet_velocity,
+                       enemy=enemy))
 
     def update_pos(self, vector):
         self.velocity += vector
