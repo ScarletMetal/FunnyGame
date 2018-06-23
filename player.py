@@ -23,11 +23,11 @@ class Player:
 
     def update_pos(self, vector):
         self.velocity += vector
-        direction_change = self.wall_detection()
 
+        direction_change = self.wall_detection() #collision physics
         if direction_change != Vector(1, 1):
-            self.velocity.x *= -0.5 * direction_change.x
-            self.velocity.y *= -0.5 * direction_change.y
+            self.velocity.x *= 0.5 * direction_change.x
+            self.velocity.y *= 0.5 * direction_change.y
 
     def wall_detection(self):
         collision = Vector(1, 1)
