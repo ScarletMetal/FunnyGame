@@ -11,7 +11,11 @@ class EventDispatcher:
     def dispatch(self, name, **params):
         if self.events[name] is not None:
             for callback in self.events[name]:
-                callback(**params)
+                try:
+                    callback(**params)
+                except Exception:
+                    index = self.events[name].index(callback)
+                    del self.events[name][index]
 
 
 game_dispatcher = EventDispatcher()
