@@ -4,9 +4,11 @@ from player import Player
 from events import Events
 from vector_generator import Vector
 
+import constants
+
 pygame.init()
 run = True
-win = pygame.display.set_mode((400, 255))
+win = pygame.display.set_mode((constants.screen_width, constants.screen_height))
 pygame.display.set_caption("Super Game")
 
 player = Player()
@@ -40,5 +42,7 @@ while run:
 
     keys = pygame.key.get_pressed()
     update_io(keys)
+
+    dispatcher.dispatch(Events.DRAW_GAME, win=win)
 
 pygame.quit()
