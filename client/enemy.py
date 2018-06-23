@@ -1,6 +1,7 @@
 import pygame
+
+from client.events import events as Events
 from event_dispatcher import game_dispatcher as dispatcher
-from events import events as Events
 
 
 class Enemy:
