@@ -3,6 +3,7 @@ from event_dispatcher import game_dispatcher as dispatcher
 from events import Events
 from vector_generator import Vector
 
+
 class Player:
     def __init__(self, x=0, y=0):
         self.x = x
@@ -12,6 +13,7 @@ class Player:
         self.color = (66, 244, 161)
         self.vector = Vector()
         dispatcher.subscribe(Events.PLAYER_CHANGE_POS, self.update_pos)
+        dispatcher.subscribe(Events.DRAW_GAME, self.draw)
 
     def update(self):
         pass
