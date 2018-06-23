@@ -18,8 +18,6 @@ class Player:
         dispatcher.subscribe(Events.UPDATE_GAME, self.update)
 
     def update(self):
-        # print(self.x)
-        print(self.velocity.x)
         self.x += self.velocity.x
         self.y += self.velocity.y
         direction_change = self.wall_detection()  # collision physics
