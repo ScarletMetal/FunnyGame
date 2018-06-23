@@ -3,10 +3,10 @@ import pygame
 from client import constants
 from client.cursor import Cursor
 from client.enemy import Enemy
+from client.event_dispatcher import game_dispatcher as dispatcher
 from client.events import events as Events
 from client.player import Player
 from client.vector import Vector
-from event_dispatcher import game_dispatcher as dispatcher
 
 pygame.init()
 run = True

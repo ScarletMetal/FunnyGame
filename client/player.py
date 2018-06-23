@@ -4,9 +4,9 @@ import pygame
 
 from client import constants
 from client.bullet import Bullet
+from client.event_dispatcher import game_dispatcher as dispatcher
 from client.events import events as Events
 from client.vector import Vector
-from event_dispatcher import game_dispatcher as dispatcher
 
 
 class Player:
