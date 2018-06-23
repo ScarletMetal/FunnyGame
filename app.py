@@ -1,4 +1,6 @@
 import pygame
+from event_dispatcher import EventDispatcher
+dispatcher = EventDispatcher()
 pygame.init()
 
 
