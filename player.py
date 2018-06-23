@@ -13,6 +13,7 @@ class Player:
         self.height = 25
         self.color = (66, 244, 161)
         self.velocity = Vector(0, 0)
+        self.bullets = []
         dispatcher.subscribe(Events.PLAYER_CHANGE_POS, self.update_pos)
         dispatcher.subscribe(Events.DRAW_GAME, self.draw)
         dispatcher.subscribe(Events.UPDATE_GAME, self.update)
