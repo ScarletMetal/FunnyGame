@@ -5,7 +5,7 @@ import constants
 
 
 class Bullet:
-    def __init__(self, enemy, x, y, velocity, radius=5, color=(255, 255, 255)):
+    def __init__(self, enemy, velocity, x=0, y=0, radius=5, color=(255, 255, 255)):
         self.velocity = velocity
         self.x = x
         self.y = y
@@ -13,11 +13,9 @@ class Bullet:
         self.radius = radius
         self.color = color
 
-        dispatcher.subscribe(Events.UPDATE_GAME, self.update)
-        dispatcher.subscribe(Events.DRAW_GAME, self.draw)
-
     def draw(self, win):
-        pygame.draw.circle(win, self.color, (self.x, self.y), self.radius)
+        pygame.draw.circle(win, (255,255,255), (int(self.x), int(self.y)), self.radius)
+        pass
 
     def update(self):
         self.x += self.velocity.x
