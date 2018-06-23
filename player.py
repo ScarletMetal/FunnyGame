@@ -18,6 +18,7 @@ class Player:
         dispatcher.subscribe(Events.PLAYER_CHANGE_POS, self.update_pos)
         dispatcher.subscribe(Events.DRAW_GAME, self.draw)
         dispatcher.subscribe(Events.UPDATE_GAME, self.update)
+        dispatcher.subscribe(Events.PLAYER_APPEND_BULLET, self.append_bullet)
 
     def update(self):
         self.x += self.velocity.x
@@ -33,7 +34,8 @@ class Player:
     def draw(self, win):
         pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.height))
 
-    def shoot_bullet(self, velocity, enemy):
+    # TODO calculate velocity based on mouse and player location
+    def append_bullet(self, cursor_pos, enemy):
         if len(self.bullets) < constants.max_bullets:
             self.bullets.append(
                 bullet(x=self.x - self.width / 2, y=self.y + self.height / 2, velocity=velocity, enemy=enemy))
