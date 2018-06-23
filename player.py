@@ -21,6 +21,8 @@ class Player:
     def update(self):
         self.x += self.velocity.x
         self.y += self.velocity.y
+        if self.velocity.get_magnitude() > constants.max_speed:
+            self.velocity *= constants.max_speed / self.velocity.get_magnitude()
         direction_change = self.wall_detection()  # collision physics
         if direction_change != Vector(1, 1):
             self.velocity.x *= 0.5 * direction_change.x
