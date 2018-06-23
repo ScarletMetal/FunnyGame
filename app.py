@@ -14,6 +14,7 @@ pygame.display.set_caption("Super Game")
 player = Player()
 cursor = Cursor()
 clock = pygame.time.Clock()
+pygame.mouse.set_visible(False)
 
 
 def update_player_velocity(keys):
@@ -41,7 +42,6 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
-
     keys = pygame.key.get_pressed()
     update_io(keys)
     dispatcher.dispatch(Events.UPDATE_GAME)
