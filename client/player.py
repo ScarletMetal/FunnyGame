@@ -18,6 +18,7 @@ class Player:
         self.color = (66, 244, 161)
         self.velocity = Vector(0, 0)
         self.bullets = []
+        self.health = constants.starting_hp
         self.time_since_shot = time.time()
         dispatcher.subscribe(Events.PLAYER_CHANGE_POS, self.update_pos)
         dispatcher.subscribe(Events.DRAW_GAME, self.draw)
