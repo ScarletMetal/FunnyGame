@@ -37,6 +37,10 @@ class Player:
             if not bullet.check_if_inbound():
                 index = self.bullets.index(bullet)
                 del self.bullets[index]
+            if bullet.check_if_hit():
+                index = self.bullets.index(bullet)
+                del self.bullets[index]
+                dispatcher.dispatch(Events.ENEMY_HIT)
 
     def draw(self, win):
         pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.height))
