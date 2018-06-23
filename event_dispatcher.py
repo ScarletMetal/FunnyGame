@@ -7,7 +7,7 @@ class EventDispatcher:
             self.events[name] = []
         self.events[name].append(callback)
 
-    def dispatch(self, name):
+    def dispatch(self, name, **params):
         if self.events[name] is not None:
             for callback in self.events[name]:
-                callback()
+                callback(params)
