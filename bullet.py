@@ -29,4 +29,4 @@ class Bullet:
 
     def check_if_hit(self):
         return (self.x - self.target.x + self.target.width / 2) ** 2 + (
-                    self.y - self.target.y + self.target.height / 2) ** 2 < (self.radius + self.target.width / 2) ** 2
+                    self.y - self.target.y - self.target.height / 2) ** 2 < (self.radius + self.target.width / 2) ** 2
