@@ -1,6 +1,6 @@
 import pygame
 from event_dispatcher import game_dispatcher as dispatcher
-from events import Events
+from events import events as Events
 from vector_generator import Vector
 
 

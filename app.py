@@ -1,7 +1,7 @@
 import pygame
 from event_dispatcher import game_dispatcher as dispatcher
 from player import Player
-from events import Events
+from events import events as Events
 from vector_generator import Vector
 
 import constants
@@ -27,7 +27,7 @@ def update_player_velocity(keys):
         vector.y = 1
 
     if vector != Vector():
-        dispatcher.dispatch(Events.PLAYER_CHANGE_POS, vector)
+        dispatcher.dispatch(Events.PLAYER_CHANGE_POS, vector=vector)
 
 
 def update_io(keys):
@@ -44,5 +44,6 @@ while run:
     update_io(keys)
 
     dispatcher.dispatch(Events.DRAW_GAME, win=win)
+    pygame.display.update()
 
 pygame.quit()
