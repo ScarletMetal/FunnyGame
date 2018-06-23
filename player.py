@@ -34,11 +34,13 @@ class Player:
     def draw(self, win):
         pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.height))
 
-    # TODO calculate velocity based on mouse and player location
     def append_bullet(self, cursor_pos, enemy):
         if len(self.bullets) < constants.max_bullets:
+            bullet_velocity = Vector(cursor_pos[0] - self.x, cursor_pos[1] - self.y)
             self.bullets.append(
-                bullet(x=self.x - self.width / 2, y=self.y + self.height / 2, velocity=velocity, enemy=enemy))
+                bullet(x=self.x - self.width / 2, y=self.y + self.height / 2,
+                       velocity=constants.bullet_speed / bullet_velocity.get_magnitude() * bullet_velocity,
+                       enemy=enemy))
 
     def update_pos(self, vector):
         self.velocity += vector
