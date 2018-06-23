@@ -1,10 +1,12 @@
-import pygame
-from event_dispatcher import game_dispatcher as dispatcher
-from events import events as Events
-from vector_generator import Vector
-import constants
-from bullet import Bullet
 import time
+
+import pygame
+
+from client import constants
+from client.bullet import Bullet
+from client.event_dispatcher import game_dispatcher as dispatcher
+from client.events import events as Events
+from client.vector import Vector
 
 
 class Player:

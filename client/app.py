@@ -1,11 +1,12 @@
 import pygame
-from event_dispatcher import game_dispatcher as dispatcher
-from player import Player
-from events import events as Events
-from vector_generator import Vector
-from cursor import Cursor
-from enemy import Enemy
-import constants
+
+from client import constants
+from client.cursor import Cursor
+from client.enemy import Enemy
+from client.event_dispatcher import game_dispatcher as dispatcher
+from client.events import events as Events
+from client.player import Player
+from client.vector import Vector
 
 pygame.init()
 run = True

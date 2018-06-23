@@ -1,7 +1,6 @@
 import pygame
-from event_dispatcher import game_dispatcher as dispatcher
-from events import events as Events
-import constants
+
+from client import constants
 
 
 class Bullet:
