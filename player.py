@@ -1,8 +1,9 @@
 import pygame
 from event_dispatcher import game_dispatcher as dispatcher
-from events import Events
+from events import events as Events
 from vector_generator import Vector
 import constants
+
 
 
 class Player:
@@ -14,6 +15,7 @@ class Player:
         self.color = (66, 244, 161)
         self.velocity = Vector()
         dispatcher.subscribe(Events.PLAYER_CHANGE_POS, self.update_pos)
+        dispatcher.subscribe(Events.DRAW_GAME, self.draw)
 
     def update(self):
         pass
