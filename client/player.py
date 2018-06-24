@@ -18,6 +18,7 @@ class Player:
         self.color = (66, 244, 161)
         self.velocity = Vector(0, 0)
         self.bullets = []
+        self.health = constants.starting_hp
         self.time_since_shot = time.time()
         dispatcher.subscribe(Events.PLAYER_CHANGE_POS, self.update_pos)
         dispatcher.subscribe(Events.DRAW_GAME, self.draw)
@@ -58,7 +59,7 @@ class Player:
             self.time_since_shot = time.time()
             bullet_velocity = Vector(cursor_pos()[0] - self.x, cursor_pos()[1] - self.y)
             self.bullets.append(
-                Bullet(x=self.x - self.width / 2, y=self.y + self.height / 2,
+                Bullet(x=self.x + self.width / 2, y=self.y + self.height / 2,
                        velocity=constants.bullet_speed / bullet_velocity.get_magnitude() * bullet_velocity,
                        enemy=enemy))
 
